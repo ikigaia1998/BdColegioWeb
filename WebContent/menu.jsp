@@ -55,7 +55,7 @@
                   Alumnos
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Crear Alumnos</a></li>
+                  <li><a class="dropdown-item" href="listaAlumnos.jsp">Crear Alumnos</a></li>
                   <li><a class="dropdown-item" href="#">Consulta y Reporte</a></li>
                 </ul>
               </li>
