@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Sistema de Gestion Escolar</title>
 </head>
-<body >
+<body class="body_menu" >
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Abraham Valdelomar</a>
@@ -101,6 +101,8 @@
         </form>
       </nav>
     <main class="fondo-menu">
+		<jsp:include page ="UsuarioIndex.jsp" />
+
 
     </main>
     <footer>

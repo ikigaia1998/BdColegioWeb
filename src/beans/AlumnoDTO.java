@@ -7,9 +7,7 @@ import lombok.Setter;
 
 public class AlumnoDTO {
 
-@Getter
-@Setter
-	
+
 	int IdAlumno;
 	int ValorCodigo;
 	String codigo;

@@ -22,6 +22,7 @@ public class ServletUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		String xtipo= request.getParameter("tipo"); 
 		if(xtipo.equals("iniciarSesion")) iniciarSesion(request,response);
+		
 	}
 
 	/**
