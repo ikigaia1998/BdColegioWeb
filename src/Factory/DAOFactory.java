@@ -1,6 +1,7 @@
 package Factory;
 
 import interfaces.AlumnoDAO;
+import interfaces.DocenteDAO;
 import interfaces.UsuarioDao;
 
 public abstract class DAOFactory {
@@ -15,7 +16,7 @@ public abstract class DAOFactory {
 	//Se ponen tantas interfaces como tengas
 	public abstract AlumnoDAO getAlumno();
 	public abstract UsuarioDao getUsuario();
-	
+	public abstract DocenteDAO getDocente();
 	
 	//con que fabrica vas a salir
 	public static DAOFactory getDAOFactory(int whichFactory) {
