@@ -1,6 +1,8 @@
 package MisServlets;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.UsuarioDTO;
 import service.UsuarioService;
+import util.Conversiones;
 
 @WebServlet("/ServletUsuario")
 public class ServletUsuario extends HttpServlet {
@@ -22,30 +25,84 @@ public class ServletUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		String xtipo= request.getParameter("tipo"); 
 		if(xtipo.equals("iniciarSesion")) iniciarSesion(request,response);
+		else if (xtipo.equals("registrar")) registrar(request,response);
+		else if (xtipo.equals("listar")) listar(request,response);
+		else if (xtipo.equals("actualizar")) actualizar(request,response);
+		else if (xtipo.equals("eliminar")) eliminar(request,response);
+		else if (xtipo.equals("buscar")) buscar(request,response);
 		
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String log,pass;
 		log= request.getParameter("txtlogin");
 		pass=request.getParameter("txtpass");
 		UsuarioDTO e = uservice.iniciarSesion(log, pass);
-		if(e==null) {
+		if(e!=null) {
 			request.setAttribute("msj","<div class ='alert alert-warning' role ='alert'>" + 
 					"            <h4>Error usuario y/o clave</h4></div>");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else response.sendRedirect("menu.jsp");
 	}
+	protected void actualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cod;
+		String nombres,apellidos,Login,Clave;
+		Date FechaRegistro;
+		cod = Integer.parseInt(request.getParameter("cod"));
+		nombres =request.getParameter("txt_nombre");
+		apellidos = request.getParameter("txt_apellido");
+		Login = request.getParameter("txt_Login");
+		Clave = request.getParameter("txt_clave");
+		FechaRegistro = Conversiones.toFecha("fecha");
+		UsuarioDTO obj  =  new UsuarioDTO ();
+		obj.setIdUsuario(cod);
+		obj.setNombres(nombres);
+		obj.setApellidos(apellidos);
+		obj.setLoginUsuario(Login);
+		obj.setClave(Clave);
+		obj.setFechaRegistro(FechaRegistro);
+		uservice.actualizarUsuario(obj);
+		listar(request,response);
+	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("data",uservice.listarUsuario());
+		request.getRequestDispatcher("UsuarioIndex.jsp").forward(request, response);		
+	}
+	protected void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cod = Integer.parseInt(request.getParameter("cod"));
+		uservice.eliminarUsuario(cod);
+		listar(request,response);
+		
+	}
+	protected void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cod = Integer.parseInt(request.getParameter("cod"));
+		request.setAttribute("Usuario",uservice.buscarUsuario(cod));
+		request.getRequestDispatcher("actualizarUsuario.jsp").forward(request, response);
+		
+		
+		
+	}
+	protected void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("UsuarioRegistro.jsp").forward(request, response);
+		int cod;
+		String nombres,apellidos,Login,Clave;
+		Date FechaRegistro;
+		cod = Integer.parseInt(request.getParameter("cod"));
+		nombres =request.getParameter("txt_nombre");
+		apellidos = request.getParameter("txt_apellido");
+		Login = request.getParameter("txt_Login");
+		Clave = request.getParameter("txt_clave");
+		FechaRegistro = Conversiones.toFecha("fecha");
+		UsuarioDTO obj  =  new UsuarioDTO ();
+		obj.setIdUsuario(cod);
+		obj.setNombres(nombres);
+		obj.setApellidos(apellidos);
+		obj.setLoginUsuario(Login);
+		obj.setClave(Clave);
+		obj.setFechaRegistro(FechaRegistro);
+		uservice.registrarUsuario(obj);
+		listar(request,response);
 	}
 
 }

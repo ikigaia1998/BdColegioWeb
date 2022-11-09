@@ -172,7 +172,6 @@ public class MySqlUsuarioDAO implements UsuarioDao {
 		return null;
 	}
 
-	
 	public UsuarioDTO iniciarSesion(String log, String pass) {
 		UsuarioDTO obj= null;
 		Connection cn = null;

@@ -44,9 +44,8 @@
                   Usuarios
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Crear Usuario</a></li>
-                  <li><a class="dropdown-item" href="#">Crear Rol</a></li>
-                  <li><a class="dropdown-item" href="#">Asignar rol permisos</a></li>
+                  <li><a class="dropdown-item" href="ServletUsuario?tipo=registrar">Crear Usuario</a></li>
+                  <li><a class="dropdown-item" href="ServletUsuario?tipo=listar">Listar Usuario</a></li>
                 </ul>
               </li>
 
@@ -55,7 +54,7 @@
                   Alumnos
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Crear Alumnos</a></li>
+                  <li><a class="dropdown-item" href="listaAlumnos.jsp">Crear Alumnos</a></li>
                   <li><a class="dropdown-item" href="#">Consulta y Reporte</a></li>
                 </ul>
               </li>
@@ -101,7 +100,7 @@
         </form>
       </nav>
     <main class="fondo-menu">
-		<jsp:include page ="UsuarioIndex.jsp" />
+		
 
 
     </main>
