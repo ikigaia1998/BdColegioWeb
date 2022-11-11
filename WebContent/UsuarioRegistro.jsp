@@ -14,26 +14,22 @@
 <body>
     <h2>Registrar Usuario</h2>
     <div class="container">
-        <form action="" method="post">
+        <form action="ServletUsuario?tipo=registrar" method="post">
             <div class="mb-3">
                 <label for="txt_nombre">Nombres : </label>
                 <input name="txt_nombre" type="text" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="txt_nombre">Apellidos : </label>
-                <input name="txt_nombre" type="text" class="form-control">
+                <label for="txt_apellido">Apellidos : </label>
+                <input name="txt_apellido" type="text" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="txt_nombre">Usuario : </label>
-                <input name="txt_nombre" type="text" class="form-control">
+                <label for="txt_Login">Usuario : </label>
+                <input name="txt_Login" type="text" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="txt_nombre">ContraseÃ±a : </label>
-                <input name="txt_nombre" type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="txt_nombre">Fecha Registro : </label>
-                <input name="txt_nombre" type="date" class="form-control">
+                <label for="txt_clave">Contraseña : </label>
+                <input name="txt_clave" type="text" class="form-control">
             </div>
             <div><button  class="btn btn-primary">Registrar</button></div>
         </form>
