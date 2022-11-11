@@ -44,15 +44,13 @@
 							if (lista != null) {
 							for (UsuarioDTO u : lista) {
 						%>
-				<tr>		
                 <td><%=u.getIdUsuario() %></td>
                 <td><%=u.getNombres() %></td>
                 <td><%=u.getApellidos() %></td>
                 <td><%=u.getLoginUsuario() %></td>
                 <td><%=u.getClave() %></td>
                 <td><%=u.getFechaRegistro() %></td>
-                <td><a href="ServletUsuario?tipo=buscar&cod=<%=u.getIdUsuario()%>" class="btn btn-success" style="margin-right:10px ;"><i class="bi bi-pencil-square"></i></a><a href="ServletUsuario?tipo=eliminar&cod=<%=u.getIdUsuario()%>" class="btn btn-danger"><i class="bi bi-trash3"></i></a></td>
-            	</tr>
+                <td><a href="ServletUsuario?tipo=buscar" class="btn btn-success" style="margin-right:10px ;"><i class="bi bi-pencil-square"></i></a><a href="ServletUsuario?tipo=eliminar" class="btn btn-danger"><i class="bi bi-trash3"></i></a></td>
             <%
 							}
 						}

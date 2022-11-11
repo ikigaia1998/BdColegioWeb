@@ -38,7 +38,7 @@ public class ServletUsuario extends HttpServlet {
 		log= request.getParameter("txtlogin");
 		pass=request.getParameter("txtpass");
 		UsuarioDTO e = uservice.iniciarSesion(log, pass);
-		if(e==null) {
+		if(e!=null) {
 			request.setAttribute("msj","<div class ='alert alert-warning' role ='alert'>" + 
 					"            <h4>Error usuario y/o clave</h4></div>");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -47,17 +47,20 @@ public class ServletUsuario extends HttpServlet {
 	protected void actualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod;
 		String nombres,apellidos,Login,Clave;
-		cod = Integer.parseInt(request.getParameter("txt_codigo"));
+		Date FechaRegistro;
+		cod = Integer.parseInt(request.getParameter("cod"));
 		nombres =request.getParameter("txt_nombre");
 		apellidos = request.getParameter("txt_apellido");
 		Login = request.getParameter("txt_Login");
 		Clave = request.getParameter("txt_clave");
+		FechaRegistro = Conversiones.toFecha("fecha");
 		UsuarioDTO obj  =  new UsuarioDTO ();
 		obj.setIdUsuario(cod);
 		obj.setNombres(nombres);
 		obj.setApellidos(apellidos);
 		obj.setLoginUsuario(Login);
 		obj.setClave(Clave);
+		obj.setFechaRegistro(FechaRegistro);
 		uservice.actualizarUsuario(obj);
 		listar(request,response);
 	}
@@ -75,23 +78,29 @@ public class ServletUsuario extends HttpServlet {
 	protected void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod = Integer.parseInt(request.getParameter("cod"));
 		request.setAttribute("Usuario",uservice.buscarUsuario(cod));
-		request.getRequestDispatcher("UsuarioActualiza.jsp").forward(request, response);
+		request.getRequestDispatcher("actualizarUsuario.jsp").forward(request, response);
 		
 		
 		
 	}
 	protected void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.getRequestDispatcher("UsuarioRegistro.jsp").forward(request, response);
+		request.getRequestDispatcher("UsuarioRegistro.jsp").forward(request, response);
+		int cod;
 		String nombres,apellidos,Login,Clave;
+		Date FechaRegistro;
+		cod = Integer.parseInt(request.getParameter("cod"));
 		nombres =request.getParameter("txt_nombre");
 		apellidos = request.getParameter("txt_apellido");
 		Login = request.getParameter("txt_Login");
 		Clave = request.getParameter("txt_clave");
+		FechaRegistro = Conversiones.toFecha("fecha");
 		UsuarioDTO obj  =  new UsuarioDTO ();
+		obj.setIdUsuario(cod);
 		obj.setNombres(nombres);
 		obj.setApellidos(apellidos);
 		obj.setLoginUsuario(Login);
 		obj.setClave(Clave);
+		obj.setFechaRegistro(FechaRegistro);
 		uservice.registrarUsuario(obj);
 		listar(request,response);
 	}
