@@ -15,7 +15,7 @@
 		String x = (String)request.getAttribute("msj");
 		String a = "";
 		if(x!=null) a =x;
-	%>
+	%> 
     <main class=" fondo">
     <section>
         <div class="box-img">

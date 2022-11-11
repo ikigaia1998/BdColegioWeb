@@ -67,18 +67,14 @@ public class MySqlUsuarioDAO implements UsuarioDao {
 			pstm.setString(3, obj.getLoginUsuario());
 			pstm.setString(4, obj.getClave());
 			estado = pstm.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {	e.printStackTrace();
 		}finally {
 			try {
 				if(pstm!=null)pstm.close();
 				if(cn!=null)cn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
+			} catch (Exception e2) {e2.printStackTrace();
 			}
 		}
-		
-		
 		return estado;
 	}
 
@@ -89,12 +85,13 @@ public class MySqlUsuarioDAO implements UsuarioDao {
 		PreparedStatement pstm = null;
 		try {
 			cn = MySqlDBConexion.getConexion();
-			String sql= "update usuario set Nombres=?,Apellidos=?,LoginUsuario=?, LoginClave=?,curtime() where IdUsuario=?";
+			String sql= "update usuario set nombres=?,apellidos=?,loginUsuario=?, loginClave=?,fecharegistro=curtime() where idUsuario=?";
 			pstm =cn.prepareStatement(sql);
 			pstm.setString(1, obj.getNombres());
 			pstm.setString(2, obj.getApellidos());
 			pstm.setString(3, obj.getLoginUsuario());
 			pstm.setString(4, obj.getClave());
+			
 			pstm.setInt(5, obj.getIdUsuario());
 			estado = pstm.executeUpdate();
 		} catch (Exception e) {
@@ -117,11 +114,11 @@ public class MySqlUsuarioDAO implements UsuarioDao {
 		Connection cn = null;
 		PreparedStatement pstm = null;
 		try {
-			String sql= "delete*from usuarios where IdUsuario=?";
+			String sql= "delete from usuario where idusuario = ? ";
 			cn= MySqlDBConexion.getConexion();
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1,cod);
-			pstm.executeUpdate();
+			estado=pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -142,7 +139,7 @@ public class MySqlUsuarioDAO implements UsuarioDao {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-			String sql = "selec*from usuario where IdUsuario = ?";
+			String sql = "select * from usuario where idusuario = ? ";
 			cn = MySqlDBConexion.getConexion();
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1, cod);

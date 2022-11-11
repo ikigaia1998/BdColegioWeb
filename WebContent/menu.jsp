@@ -44,7 +44,7 @@
                   Usuarios
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="ServletUsuario?tipo=registrar">Crear Usuario</a></li>
+                  <li><a class="dropdown-item" href="UsuarioRegistro.jsp">Crear Usuario</a></li>
                   <li><a class="dropdown-item" href="ServletUsuario?tipo=listar">Listar Usuario</a></li>
                 </ul>
               </li>
