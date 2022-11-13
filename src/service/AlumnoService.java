@@ -32,4 +32,8 @@ public class AlumnoService {
 		return objPro.eliminarAlumno(cod);
 	}
 	
+	public List<AlumnoDTO> buscaAlumnoxcod(int cod) {
+		return objPro.buscarAlumnoxcod(cod);
+	}
+	
 }
